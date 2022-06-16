@@ -15,15 +15,11 @@ import Observer.NASAFanpage;
 import Prototype.Bike;
 import Prototype.Car;
 import Prototype.Vehicle;
+import Proxy.CopilotManager;
 import Singleton.ChatMember;
 import Singleton.GlobalChatRoom;
 import Strategy.*;
 import Decorator.*;
-
-import javax.sound.midi.Soundbank;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -60,7 +56,8 @@ public class Main {
         // 4. Adapter Pattern
         System.out.println("4.=========================================================================================");
         var dataCollector = new PersonalDataCollector(new DataParser(new Data()));
-        //dataCollector.collect(dataCollector.dataParser.request());
+        dataCollector.collect(dataCollector.dataParser.request());
+        dataCollector.displayData();
 
         // 5. Decorator Pattern
         System.out.println("5.=========================================================================================");
@@ -139,5 +136,16 @@ public class Main {
             if (vehicles.get(i) != vehiclesCopy.get(i) && vehicles.get(i).equals(vehiclesCopy.get(i)))
                 System.out.println(vehicles.get(i).getName() + ": Vehicles are identical but different objects");
         }
+
+        // 10. Proxy Pattern
+        System.out.println("10.=========================================================================================");
+        // turn on navigation system
+        var copilot = new CopilotManager();
+        // first travel
+        System.out.println("navigate to Tatooine:");
+        copilot.takeControlOverSpaceship();
+        // second travel - the main goal of this idea is to reduce resource consumption
+        System.out.println("navigate back to Coruscant");
+        copilot.takeControlOverSpaceship();
     }
 }

@@ -1,5 +1,7 @@
 package Adapter;
 
+import java.util.List;
+
 public interface ITarget {
-    void request();
+    List<Person> request();
 }
